@@ -191,6 +191,7 @@
             cursor: not-allowed;
             border-color: #ccc;
         }
+
         .legend {
             background: white;
             padding: 10px;
@@ -199,6 +200,7 @@
             font-size: 14px;
             line-height: 18px;
         }
+
         .legend i {
             width: 18px;
             height: 18px;
@@ -206,7 +208,6 @@
             margin-right: 8px;
             opacity: 0.7;
         }
-
     </style>
 </head>
 
@@ -298,8 +299,7 @@
             [-7.8131942, 111.9932468],
             [-7.8133175, 111.9936030],
             [-7.8122844, 111.9940294],
-            [-7.8123286, 111.9922257],
-            [-7.8125704, 111.9921076]
+            [-7.8123286, 111.9922257]
         ];
 
         // Add the polygon to the map for RW 2
@@ -309,12 +309,13 @@
             fillOpacity: 0.5
         }).addTo(map);
 
+
         // Define the polygon for RW 3
         const rw3Coordinates = [
             [-7.8113215, 111.9940369],
-            [-7.8119360, 111.9940127],
-            [-7.8118873, 111.9924646],
-            [-7.8138273, 111.9915095],
+            [-7.8121728, 111.9940415],
+            [-7.8122585, 111.9924439],
+            [-7.8139001, 111.9918485],
             [-7.8131883, 111.9900423],
             [-7.8113232, 111.9906214]
         ];
@@ -326,14 +327,20 @@
             fillOpacity: 0.5
         }).addTo(map);
 
+
+
         // Define the polygon for RW 4
         const rw4Coordinates = [
-            [-7.8113683, 111.9927524],
-            [-7.8113657, 111.9912815],
-            [-7.8086303, 111.9922803],
+            [-7.8113403, 111.9907665],
+            [-7.8106738, 111.9907595],
+            [-7.8105851, 111.9906911],
+            [-7.8100981, 111.9909422],
+            [-7.8100183, 111.9916296],
+            [-7.8085170, 111.9914797],
             [-7.8093194, 111.9939778],
             [-7.8100031, 111.9937503],
-            [-7.8098367, 111.9932885]
+            [-7.8098367, 111.9932885],
+            [-7.8113198, 111.9928077]
         ];
 
         // Add the polygon to the map for RW 4
@@ -343,45 +350,64 @@
             fillOpacity: 0.5
         }).addTo(map);
 
+
         // Define the polygon for RW 5
-        // const rw5Coordinates = [
-        //     [-7.8098367, 111.9932885],
-        //     [-7.8084214, 111.9914632],
-        //     [-7.8088572, 111.9912161],
-        //     [-7.8096407, 111.9915926],
-        //     [-7.8101074, 111.9907474],
-        //     [-7.8117038, 111.9906341],
-        //     [-7.8128249, 111.9896772],
-        //     [-7.8126040, 111.9890274]
-        // ];
+        const rw5Coordinates = [
+            [-7.8088578, 111.9901885],
+            [-7.8084214, 111.9914632],
+            [-7.8088572, 111.9912161],
+            [-7.8096407, 111.9915926],
+            [-7.8101074, 111.9907474],
+            [-7.8117038, 111.9906341],
+            [-7.8128249, 111.9896772],
+            [-7.8126040, 111.9890274]
+        ];
 
         // // Add the polygon to the map for RW 5
-        // const rw5Polygon = L.polygon(rw5Coordinates, {
-        //     color: '#D4EBF8',
-        //     fillColor: '#D4EBF8',
-        //     fillOpacity: 0.5
-        // }).addTo(map);
+        const rw5Polygon = L.polygon(rw5Coordinates, {
+            color: '#D4EBF8',
+            fillColor: '#D4EBF8',
+            fillOpacity: 0.5
+        }).addTo(map);
 
-        // Define the polygon for RW 6
+        // Define the updated polygon for RW 6
         const rw6Coordinates = [
             [-7.8080314, 111.9904175],
-            [-7.8075046, 111.9887200],
-            [-7.8082270, 111.9885631],
+            [-7.8066332, 111.9855997],
+            [-7.8074146, 111.9852472],
             [-7.8079965, 111.9874952],
-            [-7.8091641, 111.9872042],
+            [-7.8091478, 111.9871201],
             [-7.8098179, 111.9899259]
         ];
 
-        // Add the polygon to the map for RW 6
+        // Add the updated polygon to the map for RW 6
         const rw6Polygon = L.polygon(rw6Coordinates, {
             color: '#FFCCEA',
             fillColor: '#FFCCEA',
             fillOpacity: 0.5
         }).addTo(map);
 
+
+        // Define the polygon for RW 7
+        const rw7Coordinates = [
+            [-7.8106937, 111.9867573],
+            [-7.8091305, 111.9871274],
+            [-7.8098179, 111.9899259],
+            [-7.8111856, 111.9894985]
+        ];
+
+        const rw7Polygon = L.polygon(rw7Coordinates, {
+            color: '#FFA07A', // Adjust the color as needed
+            fillColor: '#FFA07A', // Adjust the fill color as needed
+            fillOpacity: 0.5
+        }).addTo(map);
+
+
         // Define the polygon for RW 8
         const rw8Coordinates = [
-            [-7.8110531, 111.9884464],
+            [-7.8112348, 111.9895089],
+            [-7.8120961, 111.9891612],
+            [-7.8119115, 111.9882660],
             [-7.8125721, 111.9881256],
             [-7.8123439, 111.9871097],
             [-7.8119516, 111.9871834],
@@ -395,6 +421,50 @@
             fillColor: '#A1EEBD',
             fillOpacity: 0.5
         }).addTo(map);
+
+
+        // Define the polygon for RW 9
+        const rw9Coordinates = [
+            [-7.8101227, 111.9838434],
+            [-7.8107160, 111.9867503],
+            [-7.8126033, 111.9863429],
+            [-7.8115623, 111.9836590]
+        ];
+
+        // Add the polygon to the map for RW 9
+        const rw9Polygon = L.polygon(rw9Coordinates, {
+            color: '#DEB887',
+            fillColor: '#DEB887',
+            fillOpacity: 0.5
+        }).addTo(map);
+
+        // Define the polygon for RW 10
+        const rw10Coordinates = [
+            [-7.8107037, 111.9867556],
+            [-7.8079563, 111.9874550],
+            [-7.8074159, 111.9852076],
+            [-7.8058318, 111.9859369],
+            [-7.8040088, 111.9803425],
+            [-7.8010256, 111.9807357],
+            [-7.7991582, 111.9771710],
+            [-7.7976899, 111.9776207],
+            [-7.7969405, 111.9757334],
+            [-7.7998072, 111.9745190],
+            [-7.8057461, 111.9739028],
+            [-7.8061862, 111.9806794],
+            [-7.8070611, 111.9841395],
+            [-7.8093983, 111.9832568],
+            [-7.8095623, 111.9836107],
+            [-7.8100065, 111.9835365]
+        ];
+
+        // Add the polygon to the map for RW 10
+        const rw10Polygon = L.polygon(rw10Coordinates, {
+            color: '#A9A9A9',
+            fillColor: '#A9A9A9',
+            fillOpacity: 0.5
+        }).addTo(map);
+
 
 
         // Fetch data from API
