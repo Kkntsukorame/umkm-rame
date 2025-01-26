@@ -115,8 +115,8 @@
         }
 
         th {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #FFEB3B;
+            color: black;
         }
 
         td img {
@@ -134,51 +134,15 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        #add-form {
-            max-width: 600px;
-            margin: 40px auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        #add-form input,
-        #add-form textarea,
-        #add-form button {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        #add-form input[type="file"] {
-            padding: 5px;
-            background-color: #f9f9f9;
-        }
-
-        #add-form button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1em;
-        }
-
-        #add-form button:hover {
-            background-color: #45a049;
-        }
-
         input:focus,
         textarea:focus,
         button:focus {
             outline: none;
-            border-color: #4CAF50;
+            border-color: #FFEB3B;
         }
 
         a {
-            color: #4CAF50;
+            color: #FFEB3B;
             text-decoration: none;
         }
 
@@ -196,24 +160,61 @@
             font-size: 1.1em;
             color: #333;
         }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            background-color: #FFEB3B;
+            /* Yellow background */
+            color: #333;
+            border: 1px solid #FFEB3B;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .pagination button:hover {
+            background-color: #FFC107;
+            /* Darker yellow on hover */
+            border-color: #FFC107;
+        }
+
+        .pagination button:disabled {
+            background-color: #f0f0f0;
+            color: #bbb;
+            cursor: not-allowed;
+            border-color: #ccc;
+        }
     </style>
 </head>
 
 <body>
-    <h1>UMKM CRUD with SheetBest and Map</h1>
+
+    <h2>Data Mitra</h2>
+    <table id="spreadsheet-table">
+        <thead></thead>
+        <tbody></tbody>
+    </table>
 
     <div style="text-align: center; margin-top: 20px;">
         <input type="text" id="filter-box" placeholder="Cari UMKM..."
             style="padding: 10px; width: 60%; max-width: 400px;">
         <button id="search-button"
-            style="padding: 10px 20px; margin-left: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Cari</button>
+            style="padding: 10px 20px; margin-left: 10px; background-color: #FFEB3B; color: black; border: none; cursor: pointer;">Cari</button>
     </div>
 
-    <h2>Data UMKM</h2>
-    <table id="spreadsheet-table">
-        <thead></thead>
-        <tbody></tbody>
-    </table>
+
+    <div class="pagination" id="pagination-controls">
+        <button id="prev-button" class="disabled" disabled>Previous</button>
+        <button id="next-button">Next</button>
+    </div>
+
 
     <div id="map"></div>
 
@@ -222,9 +223,11 @@
         const apiUrl = "https://api.sheetbest.com/sheets/12b8e083-dc1e-4e75-ad60-84397d9b2db0";
         let mapData = [];  // Store map data globally for filtering
         const markers = [];  // To store map markers and easily manage them
+        const itemsPerPage = 5;  // Number of items per page
+        let currentPage = 1;  // Current page number
 
         // Initialize map with Sukorame, Kediri coordinates
-        const map = L.map('map').setView([-7.8234, 112.0145], 13); // Zoom level 13 for a closer view
+        const map = L.map('map').setView([-7.811241, 111.987595], 15.5); // Use dynamic zoom level
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -367,15 +370,17 @@
                 .catch(error => console.error("Error fetching data:", error));
         }
 
-        // Display data in the table
         function displaySpreadsheetData(data) {
             const tableHead = document.querySelector("#spreadsheet-table thead");
             const tableBody = document.querySelector("#spreadsheet-table tbody");
             tableHead.innerHTML = '';
             tableBody.innerHTML = '';
 
+            // Kolom yang akan ditampilkan
+            const headers = ["Nama Penanggung Jawab", "Nama Mitra", "Deskripsi Mitra"];
+
+            // Membuat header tabel
             const headerRow = document.createElement("tr");
-            const headers = ["Timestamp", "Nama Penanggung Jawab", "Nama UMKM", "Link Alamat", "Nomor Telepon", "Upload Foto", "Deskripsi UMKM"];
             headers.forEach(header => {
                 const th = document.createElement("th");
                 th.textContent = header;
@@ -383,16 +388,53 @@
             });
             tableHead.appendChild(headerRow);
 
-            data.forEach(row => {
+            // Menghitung data untuk halaman saat ini
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const currentPageData = data.slice(startIndex, endIndex);
+
+            // Menambahkan baris data ke tabel
+            currentPageData.forEach(row => {
                 const tr = document.createElement("tr");
-                Object.values(row).forEach(value => {
+
+                // Hanya menampilkan data dari kolom yang dipilih
+                headers.forEach(header => {
                     const td = document.createElement("td");
-                    td.textContent = value;
+                    td.textContent = row[header] || 'Tidak tersedia'; // Jika data kosong, tampilkan default
                     tr.appendChild(td);
                 });
+
                 tableBody.appendChild(tr);
             });
         }
+
+
+        // Update pagination controls
+        function updatePaginationControls(totalItems) {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            document.getElementById("prev-button").classList.toggle('disabled', currentPage === 1);
+            document.getElementById("next-button").classList.toggle('disabled', currentPage === totalPages);
+            document.getElementById("prev-button").disabled = currentPage === 1;
+            document.getElementById("next-button").disabled = currentPage === totalPages;
+        }
+
+        // Handle Next button click
+        document.getElementById("next-button").addEventListener("click", () => {
+            if (currentPage * itemsPerPage < mapData.length) {
+                currentPage++;
+                displaySpreadsheetData(mapData);
+                updatePaginationControls(mapData.length);
+            }
+        });
+
+        // Handle Previous button click
+        document.getElementById("prev-button").addEventListener("click", () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displaySpreadsheetData(mapData);
+                updatePaginationControls(mapData.length);
+            }
+        })
 
         function getCoordinatesFromAddress(address) {
             const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
@@ -421,35 +463,6 @@
                 })
                 .catch(error => console.error("Error getting coordinates:", error));
         }
-
-        function placePinsOnMap(data) {
-            // Clear existing markers
-            markers.forEach(marker => marker.remove());
-            markers.length = 0;
-
-            data.forEach(async (row) => {
-                const address = row["Link Alamat"];
-                const coordinates = await getCoordinatesFromAddress(address);
-
-                if (coordinates) {
-                    const { lat, lon } = coordinates;
-                    const marker = L.marker([lat, lon]).addTo(map);
-                    markers.push(marker);
-
-                    const popupContent = `
-                        <b>Nama UMKM:</b> ${row["Nama UMKM"]}<br>
-                        <b>Penanggung Jawab:</b> ${row["Nama Penanggung Jawab"]}<br>
-                        <b>Alamat:</b> <a href="${row["Link Alamat"]}" target="_blank">${row["Link Alamat"]}</a><br>
-                        <b>Nomor Telepon:</b> ${row["Nomor Telepon"]}<br>
-                        <b>Deskripsi:</b> ${row["Deskripsi UMKM"]}<br>
-                        <b>Foto:</b><br>
-                        <img src="${row["Upload Foto"]}" alt="Foto UMKM">
-                    `;
-                    marker.bindPopup(popupContent);
-                }
-            });
-        }
-
 
         document.querySelector("#search-button").addEventListener("click", filterData);
 
@@ -483,13 +496,11 @@
                     const marker = L.marker([lat, lng]).addTo(map);
 
                     const popupContent = `
-                <b>Nama UMKM:</b> ${row["Nama UMKM"]}<br>
                 <b>Penanggung Jawab:</b> ${row["Nama Penanggung Jawab"]}<br>
+                <b>Nama Mitra:</b> ${row["Nama UMKM"]}<br>
                 <b>Alamat:</b> <a href="${row["Link Alamat"]}" target="_blank">${row["Link Alamat"]}</a><br>
                 <b>Nomor Telepon:</b> ${row["Nomor Telepon"]}<br>
                 <b>Deskripsi:</b> ${row["Deskripsi UMKM"]}<br>
-                <b>Foto:</b><br>
-                <img src="${row["Upload Foto"]}" alt="Foto UMKM">
             `;
                     marker.bindPopup(popupContent);
                     markers.push(marker); // Store marker to be able to remove it later
