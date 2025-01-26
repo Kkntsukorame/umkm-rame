@@ -67,6 +67,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,8 @@
             padding: 0;
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             text-align: center;
             color: #4CAF50;
         }
@@ -105,7 +107,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -140,7 +143,9 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        #add-form input, #add-form textarea, #add-form button {
+        #add-form input,
+        #add-form textarea,
+        #add-form button {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -165,7 +170,9 @@
             background-color: #45a049;
         }
 
-        input:focus, textarea:focus, button:focus {
+        input:focus,
+        textarea:focus,
+        button:focus {
             outline: none;
             border-color: #4CAF50;
         }
@@ -191,14 +198,17 @@
         }
     </style>
 </head>
+
 <body>
     <h1>UMKM CRUD with SheetBest and Map</h1>
 
     <div style="text-align: center; margin-top: 20px;">
-    <input type="text" id="filter-box" placeholder="Cari UMKM..." style="padding: 10px; width: 60%; max-width: 400px;">
-    <button id="search-button" style="padding: 10px 20px; margin-left: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Cari</button>
-</div>
-    
+        <input type="text" id="filter-box" placeholder="Cari UMKM..."
+            style="padding: 10px; width: 60%; max-width: 400px;">
+        <button id="search-button"
+            style="padding: 10px 20px; margin-left: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Cari</button>
+    </div>
+
     <h2>Data UMKM</h2>
     <table id="spreadsheet-table">
         <thead></thead>
@@ -220,7 +230,7 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-         // Define the polygon for RW 1
+        // Define the polygon for RW 1
         const rw1Coordinates = [
             [-7.8112830, 111.9951902],
             [-7.8101433, 111.9955186],
@@ -361,7 +371,7 @@
         function displaySpreadsheetData(data) {
             const tableHead = document.querySelector("#spreadsheet-table thead");
             const tableBody = document.querySelector("#spreadsheet-table tbody");
-            tableHead.innerHTML = ''; 
+            tableHead.innerHTML = '';
             tableBody.innerHTML = '';
 
             const headerRow = document.createElement("tr");
@@ -385,32 +395,32 @@
         }
 
         function getCoordinatesFromAddress(address) {
-    const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-    return fetch(geocodeUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text(); // Get the response as text
-        })
-        .then(text => {
-            console.log("API Response:", text); // Log the raw response body
-            try {
-                const data = JSON.parse(text);
-                if (data.length > 0) {
-                    return {
-                        lat: parseFloat(data[0].lat),
-                        lon: parseFloat(data[0].lon)
-                    };
-                }
-                return null;
-            } catch (error) {
-                console.error("Error parsing JSON:", error);
-                return null;
-            }
-        })
-        .catch(error => console.error("Error getting coordinates:", error));
-}
+            const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+            return fetch(geocodeUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.text(); // Get the response as text
+                })
+                .then(text => {
+                    console.log("API Response:", text); // Log the raw response body
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.length > 0) {
+                            return {
+                                lat: parseFloat(data[0].lat),
+                                lon: parseFloat(data[0].lon)
+                            };
+                        }
+                        return null;
+                    } catch (error) {
+                        console.error("Error parsing JSON:", error);
+                        return null;
+                    }
+                })
+                .catch(error => console.error("Error getting coordinates:", error));
+        }
 
         function placePinsOnMap(data) {
             // Clear existing markers
@@ -440,42 +450,39 @@
             });
         }
 
-        // Form submission handler
 
         document.querySelector("#search-button").addEventListener("click", filterData);
 
-        // let markers = [];
+        function filterData() {
+            const filterText = document.querySelector("#filter-box").value.toLowerCase();
 
-function filterData() {
-    const filterText = document.querySelector("#filter-box").value.toLowerCase();
-    
-    // Filter the data, ensuring each value is valid before trying to match
-    const filteredData = mapData.filter(row => {
-        return Object.values(row).some(value => value && value.toLowerCase().includes(filterText));
-    });
+            // Filter the data, ensuring each value is valid before trying to match
+            const filteredData = mapData.filter(row => {
+                return Object.values(row).some(value => value && value.toLowerCase().includes(filterText));
+            });
 
-    // Display filtered data in the table
-    displaySpreadsheetData(filteredData);
-    
-    // Place pins on the map for the filtered data
-    placePinsOnMap(filteredData);
-}
+            // Display filtered data in the table
+            displaySpreadsheetData(filteredData);
 
-function placePinsOnMap(data) {
-    // Clear existing markers
-    markers.forEach(marker => marker.remove());
-    markers.length = 0;  // Clear the markers array
+            // Place pins on the map for the filtered data
+            placePinsOnMap(filteredData);
+        }
 
-    // Add new markers for the filtered data
-    data.forEach(async (row) => {
-        const lat = row["lat"];
-        const lng = row["lng"];
+        function placePinsOnMap(data) {
+            // Clear existing markers
+            markers.forEach(marker => marker.remove());
+            markers.length = 0;  // Clear the markers array
 
-        // If coordinates are valid, create and add marker
-        if (lat && lng) {
-            const marker = L.marker([lat, lng]).addTo(map);
-            
-            const popupContent = `
+            // Add new markers for the filtered data
+            data.forEach(async (row) => {
+                const lat = row["lat"];
+                const lng = row["lng"];
+
+                // If coordinates are valid, create and add marker
+                if (lat && lng) {
+                    const marker = L.marker([lat, lng]).addTo(map);
+
+                    const popupContent = `
                 <b>Nama UMKM:</b> ${row["Nama UMKM"]}<br>
                 <b>Penanggung Jawab:</b> ${row["Nama Penanggung Jawab"]}<br>
                 <b>Alamat:</b> <a href="${row["Link Alamat"]}" target="_blank">${row["Link Alamat"]}</a><br>
@@ -484,13 +491,14 @@ function placePinsOnMap(data) {
                 <b>Foto:</b><br>
                 <img src="${row["Upload Foto"]}" alt="Foto UMKM">
             `;
-            marker.bindPopup(popupContent);
-            markers.push(marker); // Store marker to be able to remove it later
+                    marker.bindPopup(popupContent);
+                    markers.push(marker); // Store marker to be able to remove it later
+                }
+            });
         }
-    });
-}
         // Initial fetch
         fetchSpreadsheetData();
     </script>
 </body>
+
 </html>
