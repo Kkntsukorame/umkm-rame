@@ -191,6 +191,22 @@
             cursor: not-allowed;
             border-color: #ccc;
         }
+        .legend {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            line-height: 18px;
+        }
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+
     </style>
 </head>
 
@@ -220,14 +236,37 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
+        // Initialize map with Sukorame, Kediri coordinates
+        const map = L.map('map').setView([-7.811241, 111.987595], 15.5); // Use dynamic zoom level
+        // Tambahkan tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Tambahkan legenda
+        var legend = L.control({ position: 'bottomright' });
+
+        legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML = `
+                <div><i style="background: red;"></i> Rumah RW</div>
+                <div><i style="background: orange;"></i> Rumah RT</div>
+                <div><i style="background: green;"></i> UMKM / Pelaku Usaha</div>
+            `;
+            return div;
+        };
+
+        legend.addTo(map);
+    </script>
+
+    <script>
         const apiUrl = "https://api.sheetbest.com/sheets/12b8e083-dc1e-4e75-ad60-84397d9b2db0";
         let mapData = [];  // Store map data globally for filtering
         const markers = [];  // To store map markers and easily manage them
         const itemsPerPage = 5;  // Number of items per page
         let currentPage = 1;  // Current page number
 
-        // Initialize map with Sukorame, Kediri coordinates
-        const map = L.map('map').setView([-7.811241, 111.987595], 15.5); // Use dynamic zoom level
+
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -484,29 +523,56 @@
         function placePinsOnMap(data) {
             // Clear existing markers
             markers.forEach(marker => marker.remove());
-            markers.length = 0;  // Clear the markers array
+            markers.length = 0; // Clear the markers array
 
             // Add new markers for the filtered data
-            data.forEach(async (row) => {
+            data.forEach(row => {
                 const lat = row["lat"];
                 const lng = row["lng"];
 
                 // If coordinates are valid, create and add marker
                 if (lat && lng) {
-                    const marker = L.marker([lat, lng]).addTo(map);
+                    // Determine color based on "Nama Mitra"
+                    const namaMitra = row["Nama Mitra"] || ""; // Handle undefined/null
+                    let iconColor = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png"
+
+                    if (namaMitra.includes("Ketua RW")) {
+                        iconColor = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png"; // Red for Ketua RW
+                    } else if (namaMitra.includes("Ketua RT")) {
+                        iconColor = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png"; // Orange for Ketua RT
+                    }
+
+                    const icon = new L.Icon({
+                        iconUrl: iconColor,
+                        shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                        popupAnchor: [1, -34],
+                        shadowSize: [41, 41]
+                    });
+                    // Create a marker with a colored icon
+                    const customMarker = L.marker([lat, lng], {
+                        // iconUrl: " http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF",
+                        icon: icon,
+                        color: "red", // Border color
+                        // fillColor: markerColor, // Fill color
+                        // fillOpacity: 0.8, // Transparency of the fill
+                        // radius: 10 // Marker size
+                    }).addTo(map);
 
                     const popupContent = `
                 <b>Penanggung Jawab:</b> ${row["Nama Penanggung Jawab"]}<br>
-                <b>Nama Mitra:</b> ${row["Nama UMKM"]}<br>
+                <b>Nama Mitra:</b> ${row["Nama Mitra"]}<br>
                 <b>Alamat:</b> <a href="${row["Link Alamat"]}" target="_blank">${row["Link Alamat"]}</a><br>
                 <b>Nomor Telepon:</b> ${row["Nomor Telepon"]}<br>
                 <b>Deskripsi:</b> ${row["Deskripsi UMKM"]}<br>
             `;
-                    marker.bindPopup(popupContent);
-                    markers.push(marker); // Store marker to be able to remove it later
+                    customMarker.bindPopup(popupContent);
+                    markers.push(customMarker); // Store marker to be able to remove it later
                 }
             });
         }
+
         // Initial fetch
         fetchSpreadsheetData();
     </script>
