@@ -1,3 +1,70 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMKM CRUD with Leaflet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5em;
+            color: #4CAF50;
+        }
+
+        #map {
+            width: 80%;
+            height: 500px;
+            margin: 20px auto;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>UMKM Map with Leaflet</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Inisialisasi peta dengan posisi awal di Sukorame, Kediri
+        const map = L.map('map').setView([-7.8234, 112.0145], 13);
+
+        // Tambahkan layer peta dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Data lokasi UMKM (80 data dummy)
+        const umkmLocations = Array.from({ length: 80 }, (_, i) => {
+            return {
+                name: `UMKM ${i + 1}`,
+                lat: -7.82 + (Math.random() * 0.02 - 0.01), // Variasi latitude
+                lng: 112.01 + (Math.random() * 0.02 - 0.01), // Variasi longitude
+                description: `Deskripsi UMKM ${i + 1}`
+            };
+        });
+
+        // Tambahkan marker untuk setiap lokasi UMKM
+        umkmLocations.forEach(umkm => {
+            const marker = L.marker([umkm.lat, umkm.lng]).addTo(map);
+            marker.bindPopup(`<b>${umkm.name}</b><br>${umkm.description}`);
+        });
+    </script>
+</body>
+</html> -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,17 +204,6 @@
         <thead></thead>
         <tbody></tbody>
     </table>
-
-    <h2>Tambah UMKM Baru</h2>
-    <form id="add-form">
-        <input type="text" id="new-responsible" placeholder="Nama Penanggung Jawab" required><br>
-        <input type="text" id="new-umkm-name" placeholder="Nama UMKM" required><br>
-        <input type="text" id="new-address-link" placeholder="Link Alamat" required><br>
-        <input type="text" id="new-phone" placeholder="Nomor Telepon" required><br>
-        <input type="file" id="new-photo" required><br>
-        <textarea id="new-description" placeholder="Deskripsi UMKM" required></textarea><br>
-        <button type="submit">Tambah UMKM</button>
-    </form>
 
     <div id="map"></div>
 
@@ -384,56 +440,11 @@
             });
         }
 
-        function addRow(data) {
-            fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(() => {
-                fetchSpreadsheetData(); // Refresh data after adding new row
-            })
-            .catch(error => console.error("Error adding row:", error));
-        }
-
         // Form submission handler
-        document.querySelector("#add-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const responsible = document.querySelector("#new-responsible").value;
-            const name = document.querySelector("#new-umkm-name").value;
-            const addressLink = document.querySelector("#new-address-link").value;
-            const phone = document.querySelector("#new-phone").value;
-            const photo = document.querySelector("#new-photo").files[0];
-            const description = document.querySelector("#new-description").value;
-
-            if (!responsible || !name || !addressLink || !phone || !photo || !description) {
-                alert("All fields are required!");
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onloadend = function () {
-                const photoData = reader.result;
-                const newEntry = {
-                    "Nama Penanggung Jawab": responsible,
-                    "Nama UMKM": name,
-                    "Link Alamat": addressLink,
-                    "Nomor Telepon": phone,
-                    "Upload Foto": photoData,
-                    "Deskripsi UMKM": description
-                };
-
-                addRow(newEntry);
-            };
-
-            reader.readAsDataURL(photo);
-        });
 
         document.querySelector("#search-button").addEventListener("click", filterData);
+
+        // let markers = [];
 
 function filterData() {
     const filterText = document.querySelector("#filter-box").value.toLowerCase();
@@ -450,7 +461,6 @@ function filterData() {
     placePinsOnMap(filteredData);
 }
 
-
 function placePinsOnMap(data) {
     // Clear existing markers
     markers.forEach(marker => marker.remove());
@@ -458,14 +468,13 @@ function placePinsOnMap(data) {
 
     // Add new markers for the filtered data
     data.forEach(async (row) => {
-        const address = row["Link Alamat"];
-        const coordinates = await getCoordinatesFromAddress(address);
+        const lat = row["lat"];
+        const lng = row["lng"];
 
-        if (coordinates) {
-            const { lat, lon } = coordinates;
-            const marker = L.marker([lat, lon]).addTo(map);
-            markers.push(marker);
-
+        // If coordinates are valid, create and add marker
+        if (lat && lng) {
+            const marker = L.marker([lat, lng]).addTo(map);
+            
             const popupContent = `
                 <b>Nama UMKM:</b> ${row["Nama UMKM"]}<br>
                 <b>Penanggung Jawab:</b> ${row["Nama Penanggung Jawab"]}<br>
@@ -476,6 +485,7 @@ function placePinsOnMap(data) {
                 <img src="${row["Upload Foto"]}" alt="Foto UMKM">
             `;
             marker.bindPopup(popupContent);
+            markers.push(marker); // Store marker to be able to remove it later
         }
     });
 }
