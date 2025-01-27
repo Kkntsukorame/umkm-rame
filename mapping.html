@@ -336,7 +336,7 @@
             fillOpacity: 0.5
         }).addTo(map);
 
-        rw1Polygon.bindPopup("RW 01").openPopup();
+        // rw1Polygon.bindPopup("RW 01").openPopup();
 
         // Define the polygon for RW 2
         const rw2Coordinates = [
@@ -693,7 +693,7 @@
                 <b>Nama Mitra:</b> ${row["Nama Mitra"]}<br>
                 <b>Alamat:</b> <a href="${row["Link Alamat"]}" target="_blank">${row["Link Alamat"]}</a><br>
                 <b>Nomor Telepon:</b> ${row["Nomor Telepon"]}<br>
-                <b>Deskripsi:</b> ${row["Deskripsi UMKM"]}<br>
+                <b>Deskripsi:</b> ${row["Deskripsi Mitra"]}<br>
             `;
                     customMarker.bindPopup(popupContent);
                     markers.push(customMarker); // Store marker to be able to remove it later
