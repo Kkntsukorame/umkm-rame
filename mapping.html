@@ -75,11 +75,11 @@
     <meta name="author" content="M. Raka Maulana A.">
 
     <title>Kelurahanku - Kelurahan Sukorame</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/favicon.ico"/>
 
-   
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.ico" />
+
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
         body {
@@ -216,10 +216,46 @@
             margin-right: 8px;
             opacity: 0.7;
         }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            /* Lebih jauh dari atas */
+            left: 20px;
+            /* Lebih jauh dari kiri */
+            background: #ff5f5f;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            /* Ukuran lebih besar */
+            height: 50px;
+            /* Ukuran lebih besar */
+            font-size: 30px;
+            /* Ukuran font lebih besar */
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .close-button:hover {
+            background-color: #ff3b3b;
+            transform: scale(1.1);
+            /* Efek membesar saat hover */
+        }
     </style>
 </head>
 
 <body>
+    <button class="close-button" onclick="goToIndex()">×</button>
+    <script>
+        function goToIndex() {
+            window.location.href = "index.html";
+        }
+    </script>
 
     <h2>Data Mitra</h2>
     <table id="spreadsheet-table">
@@ -300,6 +336,8 @@
             fillOpacity: 0.5
         }).addTo(map);
 
+        rw1Polygon.bindPopup("RW 01").openPopup();
+
         // Define the polygon for RW 2
         const rw2Coordinates = [
             [-7.8139001, 111.9918485],
@@ -316,6 +354,8 @@
             fillColor: '#F5F5DC',
             fillOpacity: 0.5
         }).addTo(map);
+
+        // rw2Polygon.bindPopup("RW 02").openPopup();
 
 
         // Define the polygon for RW 3
@@ -335,7 +375,7 @@
             fillOpacity: 0.5
         }).addTo(map);
 
-
+        // rw3Polygon.bindPopup("RW 03");
 
         // Define the polygon for RW 4
         const rw4Coordinates = [
@@ -358,6 +398,8 @@
             fillOpacity: 0.5
         }).addTo(map);
 
+        // rw4Polygon.bindPopup("RW 04");
+
 
         // Define the polygon for RW 5
         const rw5Coordinates = [
@@ -378,6 +420,8 @@
             fillOpacity: 0.5
         }).addTo(map);
 
+        // rw5Polygon.bindPopup("RW 05");
+
         // Define the updated polygon for RW 6
         const rw6Coordinates = [
             [-7.8080314, 111.9904175],
@@ -395,6 +439,7 @@
             fillOpacity: 0.5
         }).addTo(map);
 
+        // rw6Polygon.bindPopup("RW 06");
 
         // Define the polygon for RW 7
         const rw7Coordinates = [
@@ -410,6 +455,7 @@
             fillOpacity: 0.5
         }).addTo(map);
 
+        // rw7Polygon.bindPopup("RW 07");
 
         // Define the polygon for RW 8
         const rw8Coordinates = [
@@ -430,6 +476,8 @@
             fillOpacity: 0.5
         }).addTo(map);
 
+        // rw8Polygon.bindPopup("RW 08");
+
 
         // Define the polygon for RW 9
         const rw9Coordinates = [
@@ -445,6 +493,8 @@
             fillColor: '#DEB887',
             fillOpacity: 0.5
         }).addTo(map);
+
+        // rw9Polygon.bindPopup("RW 09");
 
         // Define the polygon for RW 10
         const rw10Coordinates = [
@@ -473,7 +523,7 @@
             fillOpacity: 0.5
         }).addTo(map);
 
-
+        // rw10Polygon.bindPopup("RW 10");
 
         // Fetch data from API
         function fetchSpreadsheetData() {
