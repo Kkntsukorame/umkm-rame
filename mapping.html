@@ -1,70 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UMKM CRUD with Leaflet Map</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7fc;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 2.5em;
-            color: #4CAF50;
-        }
-
-        #map {
-            width: 80%;
-            height: 500px;
-            margin: 20px auto;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
-    <h1>UMKM Map with Leaflet</h1>
-    <div id="map"></div>
-
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script>
-        // Inisialisasi peta dengan posisi awal di Sukorame, Kediri
-        const map = L.map('map').setView([-7.8234, 112.0145], 13);
-
-        // Tambahkan layer peta dari OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Data lokasi UMKM (80 data dummy)
-        const umkmLocations = Array.from({ length: 80 }, (_, i) => {
-            return {
-                name: `UMKM ${i + 1}`,
-                lat: -7.82 + (Math.random() * 0.02 - 0.01), // Variasi latitude
-                lng: 112.01 + (Math.random() * 0.02 - 0.01), // Variasi longitude
-                description: `Deskripsi UMKM ${i + 1}`
-            };
-        });
-
-        // Tambahkan marker untuk setiap lokasi UMKM
-        umkmLocations.forEach(umkm => {
-            const marker = L.marker([umkm.lat, umkm.lng]).addTo(map);
-            marker.bindPopup(`<b>${umkm.name}</b><br>${umkm.description}`);
-        });
-    </script>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -336,8 +269,6 @@
             fillOpacity: 0.5
         }).addTo(map);
 
-        // rw1Polygon.bindPopup("RW 01").openPopup();
-
         // Define the polygon for RW 2
         const rw2Coordinates = [
             [-7.8139001, 111.9918485],
@@ -355,9 +286,6 @@
             fillOpacity: 0.5
         }).addTo(map);
 
-        // rw2Polygon.bindPopup("RW 02").openPopup();
-
-
         // Define the polygon for RW 3
         const rw3Coordinates = [
             [-7.8113215, 111.9940369],
@@ -374,8 +302,6 @@
             fillColor: '#B6A28E',
             fillOpacity: 0.5
         }).addTo(map);
-
-        // rw3Polygon.bindPopup("RW 03");
 
         // Define the polygon for RW 4
         const rw4Coordinates = [
@@ -398,9 +324,6 @@
             fillOpacity: 0.5
         }).addTo(map);
 
-        // rw4Polygon.bindPopup("RW 04");
-
-
         // Define the polygon for RW 5
         const rw5Coordinates = [
             [-7.8088578, 111.9901885],
@@ -419,8 +342,6 @@
             fillColor: '#D4EBF8',
             fillOpacity: 0.5
         }).addTo(map);
-
-        // rw5Polygon.bindPopup("RW 05");
 
         // Define the updated polygon for RW 6
         const rw6Coordinates = [
@@ -455,8 +376,6 @@
             fillOpacity: 0.5
         }).addTo(map);
 
-        // rw7Polygon.bindPopup("RW 07");
-
         // Define the polygon for RW 8
         const rw8Coordinates = [
             [-7.8112348, 111.9895089],
@@ -475,8 +394,6 @@
             fillColor: '#A1EEBD',
             fillOpacity: 0.5
         }).addTo(map);
-
-        // rw8Polygon.bindPopup("RW 08");
 
 
         // Define the polygon for RW 9
@@ -522,8 +439,6 @@
             fillColor: '#A9A9A9',
             fillOpacity: 0.5
         }).addTo(map);
-
-        // rw10Polygon.bindPopup("RW 10");
 
         // Fetch data from API
         function fetchSpreadsheetData() {
