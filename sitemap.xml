@@ -6,4 +6,9 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://www.umkm-rame.com/mapping.html</loc>
+    <lastmod>2025-02-02T02:55:57+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
 </urlset>
