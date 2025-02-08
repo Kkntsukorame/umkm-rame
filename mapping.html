@@ -601,12 +601,19 @@
                         // radius: 10 // Marker size
                     }).addTo(map);
 
+                    // Link to Google Maps
+                    const googleMapsUrl = `https://www.google.com/maps/place/${lat},${lng}`;
+
                     const popupContent = `
                 <b>Penanggung Jawab:</b> ${row["Nama Penanggung Jawab"]}<br>
                 <b>Nama Mitra:</b> ${row["Nama Mitra"]}<br>
                 <b>Alamat:</b> ${row["Link Alamat"]}<br>
                 <b>Nomor Telepon:</b> ${row["Nomor Telepon"]}<br>
                 <b>Deskripsi:</b> ${row["Deskripsi Mitra"]}<br>
+                <br>
+        <a href="${googleMapsUrl}" target="_blank" style="display:inline-block; padding:8px 12px; background:#007bff; color:#fff; text-decoration:none; border-radius:5px;">
+            Beralih ke Google Maps
+        </a>
             `;
                     customMarker.bindPopup(popupContent);
                     markers.push(customMarker); // Store marker to be able to remove it later
