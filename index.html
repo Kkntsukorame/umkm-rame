@@ -1,336 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Web Profil Kelurahan Sukorame, Kec Mojoroto, Kota Kediri, Jawa Timur, Indonesia">
-    <meta name="author" content="M. Raka Maulana A.">
 
-    <title>Kelurahanku - Kelurahan Sukorame</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/favicon.ico"/>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Web Profil Kelurahan Sukorame, Kec Mojoroto, Kota Kediri, Jawa Timur, Indonesia">
+  <meta name="author" content="M. Raka Maulana A.">
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <title>Kelurahanku - Kelurahan Sukorame</title>
 
-    <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
 
-    <!-- Custom styles for this template -->
-    <link href="css/agency.min.css" rel="stylesheet">
-    <style>
-       #map {
-            width: 80%;
-            height: 400px;
-            margin: 40px auto;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+  <!-- Custom styles for this template -->
+  <link href="css/agency.min.css" rel="stylesheet">
+  <style>
+    #map {
+      width: 80%;
+      height: 400px;
+      margin: 40px auto;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .legend {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            font-size: 14px;
-            line-height: 18px;
-        }
+    .legend {
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      font-size: 14px;
+      line-height: 18px;
+    }
 
-        .legend i {
-            width: 18px;
-            height: 18px;
-            float: left;
-            margin-right: 8px;
-            opacity: 0.7;
-        }
-        #spreadsheet-table {
-    display: none;
-}
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 8px;
+      opacity: 0.7;
+    }
 
-    </style>
-  </head>
-  <body id="page-top">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Kelurahan Sukorame</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Beranda</a>
+    #spreadsheet-table {
+      display: none;
+    }
+  </style>
+</head>
+
+<body id="page-top">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Kelurahan Sukorame</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Data UMKM</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#map-section">Pemetaan Wilayah</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-lead-in">Selamat Datang di Web Profil</div>
+        <div class="intro-heading text-uppercase">Kelurahan Sukorame</div>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#portfolio">Selengkapnya</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sejarah Desa Pagar Besi -->
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Beranda</h2>
+          <h3 class="section-subheading text-muted">Kelurahan Sukorame, Kec Mojoroto, Kota kediri</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="img/sejarah/pemekaran.png" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>10 RW</h4>
+                  <h4 class="subheading">37 RT</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Kelurahan Sukorame merupakan kelurahan di lereng gunung klotok</p>
+                </div>
+              </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Data UMKM</a>
-            </li>                                         
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#map-section">Pemetaan Wilayah</a>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <h4>Kelurahan
+                  <br>Sukorame
+                </h4>
+              </div>
             </li>
           </ul>
         </div>
       </div>
-    </nav>
+    </div>
+  </section>
 
-    <!-- Header -->
-    <header class="masthead">
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in">Selamat Datang di Web Profil</div>
-          <div class="intro-heading text-uppercase">Kelurahan Sukorame</div>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#portfolio">Selengkapnya</a>
+  <!-- Profil Desa Pagar Besi -->
+  <section class="bg-light" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Data UMKM</h2>
+          <h3 class="section-subheading text-muted">Kelurahan Sukorame, Kec Mojoroto, Kota Kediri</h3>
         </div>
       </div>
-    </header>
-
-    <!-- Sejarah Desa Pagar Besi -->
-    <section id="about">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Beranda</h2>
-            <h3 class="section-subheading text-muted">Kelurahan Sukorame, Kec Mojoroto, Kota kediri</h3>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <ul class="timeline">
-              <li>
-                <div class="timeline-image">
-                  <img class="rounded-circle img-fluid" src="img/sejarah/pemekaran.png" alt="">
-                </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4>10 RW</h4>
-                    <h4 class="subheading">37 RT</h4>
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-muted">Kelurahan Sukorame merupakan kelurahan di lereng gunung klotok</p>
-                  </div>
-                </div>
-              </li>              
-              <li class="timeline-inverted">
-                <div class="timeline-image">
-                  <h4>Kelurahan
-                    <br>Sukorame</h4>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Profil Desa Pagar Besi -->
-    <section class="bg-light" id="portfolio">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Data UMKM</h2>
-            <h3 class="section-subheading text-muted">Kelurahan Sukorame, Kec Mojoroto, Kota Kediri</h3>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/profil/wilayah.png" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Wilayah</h4>
-              <p class="text-muted">Kelurahan Sukorame</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/profil/potensi.png" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Potensi</h4>
-              <p class="text-muted">Kelurahan Sukorame</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/profil/visi-misi.png" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Visi dan Misi</h4>
-              <p class="text-muted">Kelurahan Sukorame</p>
-            </div>
-          </div>          
-        </div>
-      </div>
-    </section>
-
-    <!-- Portfolio Modals -->
-
-    <!-- Modal 1 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Wilayah</h2>
-                  <p class="item-intro text-muted">Kelurahan Sukorame</p>
-                  <img class="img-fluid d-block mx-auto" src="img/profil/wilayah-full.png" alt="">
-                  <p>Kelurahan Sukorame merupakan salah satu kelurahan yang ada di Kecamatan Mojoroto Kota Kediri dengan luas wilayah 4,30 kilometer persegi.</p>
-                  <!--
-                  <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Threads</li>
-                    <li>Category: Illustration</li>
-                  </ul>
-                  -->
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
-                    Tutup</button>
-                </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fa fa-plus fa-3x"></i>
               </div>
             </div>
+            <img class="img-fluid" src="img/profil/wilayah.png" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Wilayah</h4>
+            <p class="text-muted">Kelurahan Sukorame</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fa fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/profil/potensi.png" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Potensi</h4>
+            <p class="text-muted">Kelurahan Sukorame</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fa fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/profil/visi-misi.png" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Visi dan Misi</h4>
+            <p class="text-muted">Kelurahan Sukorame</p>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Modal 2 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Potensi</h2>
-                  <p class="item-intro text-muted">Kelurahan Sukorame</p>
-                  <img class="img-fluid d-block mx-auto" src="img/profil/potensi-full.png" alt="">
-                  <p>Potensi yang terdapat di Kelurahan Sukorame sangat beragam, mulai dari potensi produk unggulan masyarakat, potensi pertanian, dan lain-lain. 
-                    Dalam upaya untuk melestarikan adat budaya lokal kami mengadakan pembinaan dan memberikan kesempatan untuk tampil kepada kelompok-kelompok seni dalam masyarakat Kelurahan Sukorame pada acara kegiatan rutin Kelurahan maupun kegiatan pemerintah Kota Kediri.</p>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
-                    Tutup</button>
-                </div>
-              </div>
-            </div>
+  <!-- Portfolio Modals -->
+
+  <!-- Modal 1 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Modal 3 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Visi dan Misi</h2>
-                  <p class="item-intro text-muted">Kelurahan Sukoramei</p>
-                  <img class="img-fluid d-block mx-auto" src="img/profil/visi-misi-full.png" alt="">
-                  <p class="text-left"><b>VISI :</b>
-                    <br/>Visi Kelurahan Sukorame Besi adalah "MELAYANI MASYARAKAT KHUSUSNYA KELURAHAN SUKORAME DENGAN SEBAIK-BAIKNYA"
-                    <br/><br/><b>MISI :</b>
-                    <br/>Untuk terwujudnya visi tersebut ditetapkan dua upaya/cara atau misi yang akan mendukung pencapaian visi yaitu:
-                    <br/>&emsp;1.&ensp;MEMAJUKAN Kelurahan DALAM MISI PEMBANGUNAN
-                    <br/>&emsp;2.&ensp;MEMAKMURKAN MASYARAKAT KELURAHAN SUKORAME
-                  </p>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
-                    Tutup</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <table id="spreadsheet-table">
-        <thead></thead>
-        <tbody></tbody>
-    </table>
-       <!-- Peta Wilayah -->
-       <section id="map-section">
         <div class="container">
           <div class="row">
-            <div class="col-lg-12 text-center">
-              <h2 class="section-heading text-uppercase">Peta Kelurahan Sukorame</h2>
-              <h3 class="section-subheading text-muted">Lokasi Kelurahan Sukorame, Kec Mojoroto, Kota Kediri</h3>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-
-              <div style="text-align: center; margin-top: 20px;">
-                <input type="text" id="filter-box" placeholder="Cari UMKM..."
-                    style="padding: 10px; width: 60%; max-width: 400px;">
-                <button id="search-button"
-                    style="padding: 10px 20px; margin-left: 10px; background-color: #FFEB3B; color: black; border: none; cursor: pointer;">Cari</button>
-            </div>
-        
-              <div id="map"></div>
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Data RW</h2>
+                <p class="item-intro text-muted">Kelurahan Sukorame</p>
+                <table id="ketua-rw-table" class="table">
+                  <thead>
+                    <tr>
+                      <th>Nama Mitra</th>
+                      <th>Wilayah</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fa fa-times"></i>
+                  Tutup</button>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
 
-       <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <span class="copyright">Copyright 2025 &copy; All Rights Reserved</span>
-          </div>          
-          <div class="col-md-4">            
+  <!-- Modal 2 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
           </div>
-          <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li class="list-inline-item">
-                <a href=""">KKNT Kelompok 23</a>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Data RT</h2>
+                <p class="item-intro text-muted">Kelurahan Sukorame</p>
+                <table id="ketua-rt-table" class="table">
+                  <thead>
+                    <tr>
+                      <th>Nama Mitra</th>
+                      <th>Wilayah</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fa fa-times"></i>
+                  Tutup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Data UMKM</h2>
+                <p class="item-intro text-muted">Kelurahan Sukoramei</p>
+                 <!-- Tabel UMKM -->
+                 <table id="umkm-table" class="table">
+                   <thead>
+                     <tr>
+                       <th>Nama Mitra</th>
+                       <th>Wilayah</th>
+                     </tr>
+                   </thead>
+                   <tbody></tbody>
+                 </table>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fa fa-times"></i>
+                  Tutup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table id="spreadsheet-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+  <!-- Peta Wilayah -->
+  <section id="map-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Peta Kelurahan Sukorame</h2>
+          <h3 class="section-subheading text-muted">Lokasi Kelurahan Sukorame, Kec Mojoroto, Kota Kediri</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div style="text-align: center; margin-top: 20px;">
+            <input type="text" id="filter-box" placeholder="Cari UMKM..."
+              style="padding: 10px; width: 60%; max-width: 400px;">
+            <button id="search-button"
+              style="padding: 10px 20px; margin-left: 10px; background-color: #FFEB3B; color: black; border: none; cursor: pointer;">Cari</button>
+          </div>
+
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <span class="copyright">Copyright 2025 &copy; All Rights Reserved</span>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li class="list-inline-item">
+              <a href=""">KKNT Kelompok 23</a>
               </li>              
             </ul>
           </div>
@@ -339,381 +353,425 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src=" vendor/jquery/jquery.min.js"></script>
+                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- Plugin JavaScript -->
+                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="js/agency.min.js"></script>
+                <!-- Custom scripts for this template -->
+                <script src="js/agency.min.js"></script>
 
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script>
-        // Initialize map with Sukorame, Kediri coordinates
-        const map = L.map('map').setView([-7.811241, 111.987595], 15.5); // Use dynamic zoom level
-        // Tambahkan tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+                <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+                <script>
+                  // Initialize map with Sukorame, Kediri coordinates
+                  const map = L.map('map').setView([-7.811241, 111.987595], 15.5); // Use dynamic zoom level
+                  // Tambahkan tile layer
+                  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                  }).addTo(map);
 
-        // Tambahkan legenda
-        var legend = L.control({ position: 'bottomright' });
+                  // Tambahkan legenda
+                  var legend = L.control({ position: 'bottomright' });
 
-        legend.onAdd = function (map) {
-            var div = L.DomUtil.create('div', 'legend');
-            div.innerHTML = `
+                  legend.onAdd = function (map) {
+                    var div = L.DomUtil.create('div', 'legend');
+                    div.innerHTML = `
                 <div><i style="background: red;"></i> Rumah RW</div>
                 <div><i style="background: orange;"></i> Rumah RT</div>
                 <div><i style="background: green;"></i> UMKM / Pelaku Usaha</div>
             `;
-            return div;
-        };
+                    return div;
+                  };
 
-        legend.addTo(map);
-    </script>
+                  legend.addTo(map);
+                </script>
 
-    <script>
-        // const apiUrl = "https://api.sheetbest.com/sheets/12b8e083-dc1e-4e75-ad60-84397d9b2db0";
-        const apiUrl = "https://opensheet.elk.sh/1M2ZRDhqqGD6HyhT-rsINQNs2ayQtf6zmUjHMtPRlqZI/Master";
+                <script>
+                  // const apiUrl = "https://api.sheetbest.com/sheets/12b8e083-dc1e-4e75-ad60-84397d9b2db0";
+                  const apiUrl = "https://opensheet.elk.sh/1M2ZRDhqqGD6HyhT-rsINQNs2ayQtf6zmUjHMtPRlqZI/Master";
 
-        let mapData = [];  // Store map data globally for filtering
-        const markers = [];  // To store map markers and easily manage them
-        const itemsPerPage = 5;  // Number of items per page
-        let currentPage = 1;  // Current page number
-
-
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Define the polygon for RW 1
-        const rw1Coordinates = [
-            [-7.8112830, 111.9951902],
-            [-7.8101433, 111.9955186],
-            [-7.8099414, 111.9950175],
-            [-7.8097424, 111.9950738],
-            [-7.8094009, 111.9939459],
-            [-7.8099912, 111.9937411],
-            [-7.8098364, 111.9932814],
-            [-7.8113358, 111.9928057]
-        ];
-
-        // Add the polygon to the map
-        const rw1Polygon = L.polygon(rw1Coordinates, {
-            color: '#DCE4C9',
-            fillColor: '#DCE4C9',
-            fillOpacity: 0.5
-        }).addTo(map);
-
-        // Define the polygon for RW 2
-        const rw2Coordinates = [
-            [-7.8139001, 111.9918485],
-            [-7.8141299, 111.9930333],
-            [-7.8131942, 111.9932468],
-            [-7.8133175, 111.9936030],
-            [-7.8122844, 111.9940294],
-            [-7.8123286, 111.9922257]
-        ];
-
-        // Add the polygon to the map for RW 2
-        const rw2Polygon = L.polygon(rw2Coordinates, {
-            color: '#F5F5DC',
-            fillColor: '#F5F5DC',
-            fillOpacity: 0.5
-        }).addTo(map);
-
-        // Define the polygon for RW 3
-        const rw3Coordinates = [
-            [-7.8113215, 111.9940369],
-            [-7.8121728, 111.9940415],
-            [-7.8122585, 111.9924439],
-            [-7.8139001, 111.9918485],
-            [-7.8131883, 111.9900423],
-            [-7.8113232, 111.9906214]
-        ];
-
-        // Add the polygon to the map for RW 3
-        const rw3Polygon = L.polygon(rw3Coordinates, {
-            color: '#B6A28E',
-            fillColor: '#B6A28E',
-            fillOpacity: 0.5
-        }).addTo(map);
-
-        // Define the polygon for RW 4
-        const rw4Coordinates = [
-            [-7.8113403, 111.9907665],
-            [-7.8106738, 111.9907595],
-            [-7.8105851, 111.9906911],
-            [-7.8100981, 111.9909422],
-            [-7.8100183, 111.9916296],
-            [-7.8085170, 111.9914797],
-            [-7.8093194, 111.9939778],
-            [-7.8100031, 111.9937503],
-            [-7.8098367, 111.9932885],
-            [-7.8113198, 111.9928077]
-        ];
-
-        // Add the polygon to the map for RW 4
-        const rw4Polygon = L.polygon(rw4Coordinates, {
-            color: '#9FBB73',
-            fillColor: '#9FBB73',
-            fillOpacity: 0.5
-        }).addTo(map);
-
-        // Define the polygon for RW 5
-        const rw5Coordinates = [
-            [-7.8088578, 111.9901885],
-            [-7.8084214, 111.9914632],
-            [-7.8088572, 111.9912161],
-            [-7.8096407, 111.9915926],
-            [-7.8101074, 111.9907474],
-            [-7.8117038, 111.9906341],
-            [-7.8128249, 111.9896772],
-            [-7.8126040, 111.9890274]
-        ];
-
-        // // Add the polygon to the map for RW 5
-        const rw5Polygon = L.polygon(rw5Coordinates, {
-            color: '#D4EBF8',
-            fillColor: '#D4EBF8',
-            fillOpacity: 0.5
-        }).addTo(map);
-
-        // Define the updated polygon for RW 6
-        const rw6Coordinates = [
-            [-7.8080314, 111.9904175],
-            [-7.8066332, 111.9855997],
-            [-7.8074146, 111.9852472],
-            [-7.8079965, 111.9874952],
-            [-7.8091478, 111.9871201],
-            [-7.8098179, 111.9899259]
-        ];
-
-        // Add the updated polygon to the map for RW 6
-        const rw6Polygon = L.polygon(rw6Coordinates, {
-            color: '#FFCCEA',
-            fillColor: '#FFCCEA',
-            fillOpacity: 0.5
-        }).addTo(map);
-
-        // Define the polygon for RW 7
-        const rw7Coordinates = [
-            [-7.8106937, 111.9867573],
-            [-7.8091305, 111.9871274],
-            [-7.8098179, 111.9899259],
-            [-7.8111856, 111.9894985]
-        ];
-
-        const rw7Polygon = L.polygon(rw7Coordinates, {
-            color: '#FFA07A', // Adjust the color as needed
-            fillColor: '#FFA07A', // Adjust the fill color as needed
-            fillOpacity: 0.5
-        }).addTo(map);
-
-        // Define the polygon for RW 8
-        const rw8Coordinates = [
-            [-7.8112348, 111.9895089],
-            [-7.8120961, 111.9891612],
-            [-7.8119115, 111.9882660],
-            [-7.8125721, 111.9881256],
-            [-7.8123439, 111.9871097],
-            [-7.8119516, 111.9871834],
-            [-7.8117493, 111.9865276],
-            [-7.8107173, 111.9867539]
-        ];
-
-        // Add the polygon to the map for RW 8
-        const rw8Polygon = L.polygon(rw8Coordinates, {
-            color: '#A1EEBD',
-            fillColor: '#A1EEBD',
-            fillOpacity: 0.5
-        }).addTo(map);
+                  let mapData = [];  // Store map data globally for filtering
+                  const markers = [];  // To store map markers and easily manage them
+                  const itemsPerPage = 5;  // Number of items per page
+                  let currentPage = 1;  // Current page number
 
 
-        // Define the polygon for RW 9
-        const rw9Coordinates = [
-            [-7.8101227, 111.9838434],
-            [-7.8107160, 111.9867503],
-            [-7.8126033, 111.9863429],
-            [-7.8115623, 111.9836590]
-        ];
 
-        // Add the polygon to the map for RW 9
-        const rw9Polygon = L.polygon(rw9Coordinates, {
-            color: '#DEB887',
-            fillColor: '#DEB887',
-            fillOpacity: 0.5
-        }).addTo(map);
+                  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  }).addTo(map);
 
-        // Define the polygon for RW 10
-        const rw10Coordinates = [
-            [-7.8107037, 111.9867556],
-            [-7.8079563, 111.9874550],
-            [-7.8074159, 111.9852076],
-            [-7.8058318, 111.9859369],
-            [-7.8040088, 111.9803425],
-            [-7.8010256, 111.9807357],
-            [-7.7991582, 111.9771710],
-            [-7.7976899, 111.9776207],
-            [-7.7969405, 111.9757334],
-            [-7.7998072, 111.9745190],
-            [-7.8057461, 111.9739028],
-            [-7.8061862, 111.9806794],
-            [-7.8070611, 111.9841395],
-            [-7.8093983, 111.9832568],
-            [-7.8095623, 111.9836107],
-            [-7.8100065, 111.9835365]
-        ];
+                  document.addEventListener("DOMContentLoaded", async function () {
+                    const url = "https://opensheet.elk.sh/1M2ZRDhqqGD6HyhT-rsINQNs2ayQtf6zmUjHMtPRlqZI/Master"; // Ganti dengan URL OpenSheet Anda
 
-        // Add the polygon to the map for RW 10
-        const rw10Polygon = L.polygon(rw10Coordinates, {
-            color: '#A9A9A9',
-            fillColor: '#A9A9A9',
-            fillOpacity: 0.5
-        }).addTo(map);
-
-        // Fetch data from API
-        function fetchSpreadsheetData() {
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    mapData = data; // Store the fetched data globally
-                    displaySpreadsheetData(data);
-                    placePinsOnMap(data);
-                })
-                .catch(error => console.error("Error fetching data:", error));
-        }
-
-        function displaySpreadsheetData(data) {
-            const tableHead = document.querySelector("#spreadsheet-table thead");
-            const tableBody = document.querySelector("#spreadsheet-table tbody");
-            tableHead.innerHTML = '';
-            tableBody.innerHTML = '';
-
-            // Kolom yang akan ditampilkan
-            const headers = ["Nama Penanggung Jawab", "Nama Mitra", "Deskripsi Mitra"];
-
-            // Membuat header tabel
-            const headerRow = document.createElement("tr");
-            headers.forEach(header => {
-                const th = document.createElement("th");
-                th.textContent = header;
-                headerRow.appendChild(th);
-            });
-            tableHead.appendChild(headerRow);
-
-            // Menghitung data untuk halaman saat ini
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const currentPageData = data.slice(startIndex, endIndex);
-
-            // Menambahkan baris data ke tabel
-            currentPageData.forEach(row => {
-                const tr = document.createElement("tr");
-
-                // Hanya menampilkan data dari kolom yang dipilih
-                headers.forEach(header => {
-                    const td = document.createElement("td");
-                    td.textContent = row[header] || 'Tidak tersedia'; // Jika data kosong, tampilkan default
-                    tr.appendChild(td);
-                });
-
-                tableBody.appendChild(tr);
-            });
-        }
-
-        function getCoordinatesFromAddress(address) {
-            const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-            return fetch(geocodeUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.text(); // Get the response as text
-                })
-                .then(text => {
-                    console.log("API Response:", text); // Log the raw response body
                     try {
-                        const data = JSON.parse(text);
-                        if (data.length > 0) {
-                            return {
-                                lat: parseFloat(data[0].lat),
-                                lon: parseFloat(data[0].lon)
-                            };
-                        }
-                        return null;
+                      let response = await fetch(url);
+                      let spreadsheetData = await response.json(); // Konversi ke JSON
+
+                      console.log("Spreadsheet Data:", spreadsheetData); // Cek apakah data sudah masuk
+
+                      if (!Array.isArray(spreadsheetData)) {
+                        console.error("Data tidak valid atau belum dimuat.");
+                        return;
+                      }
+
+                      function filterData(prefix, tableId) {
+                        let tbody = document.querySelector(`#${tableId} tbody`);
+                        tbody.innerHTML = ""; // Kosongkan tabel sebelum menampilkan data
+
+                        let filteredData = spreadsheetData.filter(item =>
+                          item && item["Nama Mitra"] &&
+                          item["Nama Mitra"].toLowerCase().startsWith(prefix.toLowerCase()) // Case-insensitive
+                        );
+
+                        filteredData.forEach(item => {
+                          let row = document.createElement("tr");
+                          let cell = document.createElement("td");
+                          cell.textContent = item["Nama Mitra"];
+                          row.appendChild(cell);
+                          tbody.appendChild(row);
+                        });
+                      }
+
+                      // Tampilkan data yang difilter
+                      filterData("KETUA RW", "ketua-rw-table");
+                      filterData("KETUA RT", "ketua-rt-table");
+                      filterData("UMKM", "umkm-table");
+
+
                     } catch (error) {
-                        console.error("Error parsing JSON:", error);
-                        return null;
+                      console.error("Gagal mengambil data:", error);
                     }
-                })
-                .catch(error => console.error("Error getting coordinates:", error));
-        }
+                  });
 
-        document.querySelector("#search-button").addEventListener("click", filterData);
 
-        function filterData() {
-            const filterText = document.querySelector("#filter-box").value.toLowerCase();
+                  // Define the polygon for RW 1
+                  const rw1Coordinates = [
+                    [-7.8112830, 111.9951902],
+                    [-7.8101433, 111.9955186],
+                    [-7.8099414, 111.9950175],
+                    [-7.8097424, 111.9950738],
+                    [-7.8094009, 111.9939459],
+                    [-7.8099912, 111.9937411],
+                    [-7.8098364, 111.9932814],
+                    [-7.8113358, 111.9928057]
+                  ];
 
-            // Filter the data, ensuring each value is valid before trying to match
-            const filteredData = mapData.filter(row => {
-                return Object.values(row).some(value => value && value.toLowerCase().includes(filterText));
-            });
+                  // Add the polygon to the map
+                  const rw1Polygon = L.polygon(rw1Coordinates, {
+                    color: '#DCE4C9',
+                    fillColor: '#DCE4C9',
+                    fillOpacity: 0.5
+                  }).addTo(map);
 
-            // Display filtered data in the table
-            displaySpreadsheetData(filteredData);
+                  // Define the polygon for RW 2
+                  const rw2Coordinates = [
+                    [-7.8139001, 111.9918485],
+                    [-7.8141299, 111.9930333],
+                    [-7.8131942, 111.9932468],
+                    [-7.8133175, 111.9936030],
+                    [-7.8122844, 111.9940294],
+                    [-7.8123286, 111.9922257]
+                  ];
 
-            // Place pins on the map for the filtered data
-            placePinsOnMap(filteredData);
-        }
+                  // Add the polygon to the map for RW 2
+                  const rw2Polygon = L.polygon(rw2Coordinates, {
+                    color: '#F5F5DC',
+                    fillColor: '#F5F5DC',
+                    fillOpacity: 0.5
+                  }).addTo(map);
 
-        function placePinsOnMap(data) {
-            // Clear existing markers
-            markers.forEach(marker => marker.remove());
-            markers.length = 0; // Clear the markers array
+                  // Define the polygon for RW 3
+                  const rw3Coordinates = [
+                    [-7.8113215, 111.9940369],
+                    [-7.8121728, 111.9940415],
+                    [-7.8122585, 111.9924439],
+                    [-7.8139001, 111.9918485],
+                    [-7.8131883, 111.9900423],
+                    [-7.8113232, 111.9906214]
+                  ];
 
-            // Add new markers for the filtered data
-            data.forEach(row => {
-                const lat = row["lat"];
-                const lng = row["lng"];
+                  // Add the polygon to the map for RW 3
+                  const rw3Polygon = L.polygon(rw3Coordinates, {
+                    color: '#B6A28E',
+                    fillColor: '#B6A28E',
+                    fillOpacity: 0.5
+                  }).addTo(map);
 
-                // If coordinates are valid, create and add marker
-                if (lat && lng) {
-                    // Determine color based on "Nama Mitra"
-                    const namaMitra = row["Nama Mitra"] || ""; // Handle undefined/null
-                    let iconColor = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png"
+                  // Define the polygon for RW 4
+                  const rw4Coordinates = [
+                    [-7.8113403, 111.9907665],
+                    [-7.8106738, 111.9907595],
+                    [-7.8105851, 111.9906911],
+                    [-7.8100981, 111.9909422],
+                    [-7.8100183, 111.9916296],
+                    [-7.8085170, 111.9914797],
+                    [-7.8093194, 111.9939778],
+                    [-7.8100031, 111.9937503],
+                    [-7.8098367, 111.9932885],
+                    [-7.8113198, 111.9928077]
+                  ];
 
-                    if (namaMitra.includes("Ketua RW")) {
-                        iconColor = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png"; // Red for Ketua RW
-                    } else if (namaMitra.includes("Ketua RT")) {
-                        iconColor = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png"; // Orange for Ketua RT
-                    }
+                  // Add the polygon to the map for RW 4
+                  const rw4Polygon = L.polygon(rw4Coordinates, {
+                    color: '#9FBB73',
+                    fillColor: '#9FBB73',
+                    fillOpacity: 0.5
+                  }).addTo(map);
 
-                    const icon = new L.Icon({
-                        iconUrl: iconColor,
-                        shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34],
-                        shadowSize: [41, 41]
+                  // Define the polygon for RW 5
+                  const rw5Coordinates = [
+                    [-7.8088578, 111.9901885],
+                    [-7.8084214, 111.9914632],
+                    [-7.8088572, 111.9912161],
+                    [-7.8096407, 111.9915926],
+                    [-7.8101074, 111.9907474],
+                    [-7.8117038, 111.9906341],
+                    [-7.8128249, 111.9896772],
+                    [-7.8126040, 111.9890274]
+                  ];
+
+                  // // Add the polygon to the map for RW 5
+                  const rw5Polygon = L.polygon(rw5Coordinates, {
+                    color: '#D4EBF8',
+                    fillColor: '#D4EBF8',
+                    fillOpacity: 0.5
+                  }).addTo(map);
+
+                  // Define the updated polygon for RW 6
+                  const rw6Coordinates = [
+                    [-7.8080314, 111.9904175],
+                    [-7.8066332, 111.9855997],
+                    [-7.8074146, 111.9852472],
+                    [-7.8079965, 111.9874952],
+                    [-7.8091478, 111.9871201],
+                    [-7.8098179, 111.9899259]
+                  ];
+
+                  // Add the updated polygon to the map for RW 6
+                  const rw6Polygon = L.polygon(rw6Coordinates, {
+                    color: '#FFCCEA',
+                    fillColor: '#FFCCEA',
+                    fillOpacity: 0.5
+                  }).addTo(map);
+
+                  // Define the polygon for RW 7
+                  const rw7Coordinates = [
+                    [-7.8106937, 111.9867573],
+                    [-7.8091305, 111.9871274],
+                    [-7.8098179, 111.9899259],
+                    [-7.8111856, 111.9894985]
+                  ];
+
+                  const rw7Polygon = L.polygon(rw7Coordinates, {
+                    color: '#FFA07A', // Adjust the color as needed
+                    fillColor: '#FFA07A', // Adjust the fill color as needed
+                    fillOpacity: 0.5
+                  }).addTo(map);
+
+                  // Define the polygon for RW 8
+                  const rw8Coordinates = [
+                    [-7.8112348, 111.9895089],
+                    [-7.8120961, 111.9891612],
+                    [-7.8119115, 111.9882660],
+                    [-7.8125721, 111.9881256],
+                    [-7.8123439, 111.9871097],
+                    [-7.8119516, 111.9871834],
+                    [-7.8117493, 111.9865276],
+                    [-7.8107173, 111.9867539]
+                  ];
+
+                  // Add the polygon to the map for RW 8
+                  const rw8Polygon = L.polygon(rw8Coordinates, {
+                    color: '#A1EEBD',
+                    fillColor: '#A1EEBD',
+                    fillOpacity: 0.5
+                  }).addTo(map);
+
+
+                  // Define the polygon for RW 9
+                  const rw9Coordinates = [
+                    [-7.8101227, 111.9838434],
+                    [-7.8107160, 111.9867503],
+                    [-7.8126033, 111.9863429],
+                    [-7.8115623, 111.9836590]
+                  ];
+
+                  // Add the polygon to the map for RW 9
+                  const rw9Polygon = L.polygon(rw9Coordinates, {
+                    color: '#DEB887',
+                    fillColor: '#DEB887',
+                    fillOpacity: 0.5
+                  }).addTo(map);
+
+                  // Define the polygon for RW 10
+                  const rw10Coordinates = [
+                    [-7.8107037, 111.9867556],
+                    [-7.8079563, 111.9874550],
+                    [-7.8074159, 111.9852076],
+                    [-7.8058318, 111.9859369],
+                    [-7.8040088, 111.9803425],
+                    [-7.8010256, 111.9807357],
+                    [-7.7991582, 111.9771710],
+                    [-7.7976899, 111.9776207],
+                    [-7.7969405, 111.9757334],
+                    [-7.7998072, 111.9745190],
+                    [-7.8057461, 111.9739028],
+                    [-7.8061862, 111.9806794],
+                    [-7.8070611, 111.9841395],
+                    [-7.8093983, 111.9832568],
+                    [-7.8095623, 111.9836107],
+                    [-7.8100065, 111.9835365]
+                  ];
+
+                  // Add the polygon to the map for RW 10
+                  const rw10Polygon = L.polygon(rw10Coordinates, {
+                    color: '#A9A9A9',
+                    fillColor: '#A9A9A9',
+                    fillOpacity: 0.5
+                  }).addTo(map);
+
+                  // Fetch data from API
+                  function fetchSpreadsheetData() {
+                    fetch(apiUrl)
+                      .then(response => response.json())
+                      .then(data => {
+                        mapData = data; // Store the fetched data globally
+                        displaySpreadsheetData(data);
+                        placePinsOnMap(data);
+                      })
+                      .catch(error => console.error("Error fetching data:", error));
+                  }
+
+                  function displaySpreadsheetData(data) {
+                    const tableHead = document.querySelector("#spreadsheet-table thead");
+                    const tableBody = document.querySelector("#spreadsheet-table tbody");
+                    tableHead.innerHTML = '';
+                    tableBody.innerHTML = '';
+
+                    // Kolom yang akan ditampilkan
+                    const headers = ["Nama Penanggung Jawab", "Nama Mitra", "Deskripsi Mitra"];
+
+                    // Membuat header tabel
+                    const headerRow = document.createElement("tr");
+                    headers.forEach(header => {
+                      const th = document.createElement("th");
+                      th.textContent = header;
+                      headerRow.appendChild(th);
                     });
-                    // Create a marker with a colored icon
-                    const customMarker = L.marker([lat, lng], {
-                        // iconUrl: " http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF",
-                        icon: icon,
-                        color: "red", // Border color
-                        // fillColor: markerColor, // Fill color
-                        // fillOpacity: 0.8, // Transparency of the fill
-                        // radius: 10 // Marker size
-                    }).addTo(map);
+                    tableHead.appendChild(headerRow);
 
-                    // Link to Google Maps
-                    const googleMapsUrl = `https://www.google.com/maps/place/${lat},${lng}`;
+                    // Menghitung data untuk halaman saat ini
+                    const startIndex = (currentPage - 1) * itemsPerPage;
+                    const endIndex = startIndex + itemsPerPage;
+                    const currentPageData = data.slice(startIndex, endIndex);
 
-                    const popupContent = `
+                    // Menambahkan baris data ke tabel
+                    currentPageData.forEach(row => {
+                      const tr = document.createElement("tr");
+
+                      // Hanya menampilkan data dari kolom yang dipilih
+                      headers.forEach(header => {
+                        const td = document.createElement("td");
+                        td.textContent = row[header] || 'Tidak tersedia'; // Jika data kosong, tampilkan default
+                        tr.appendChild(td);
+                      });
+
+                      tableBody.appendChild(tr);
+                    });
+                  }
+
+                  function getCoordinatesFromAddress(address) {
+                    const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+                    return fetch(geocodeUrl)
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.text(); // Get the response as text
+                      })
+                      .then(text => {
+                        console.log("API Response:", text); // Log the raw response body
+                        try {
+                          const data = JSON.parse(text);
+                          if (data.length > 0) {
+                            return {
+                              lat: parseFloat(data[0].lat),
+                              lon: parseFloat(data[0].lon)
+                            };
+                          }
+                          return null;
+                        } catch (error) {
+                          console.error("Error parsing JSON:", error);
+                          return null;
+                        }
+                      })
+                      .catch(error => console.error("Error getting coordinates:", error));
+                  }
+
+                  document.querySelector("#search-button").addEventListener("click", filterData);
+
+                  function filterData() {
+                    const filterText = document.querySelector("#filter-box").value.toLowerCase();
+
+                    // Filter the data, ensuring each value is valid before trying to match
+                    const filteredData = mapData.filter(row => {
+                      return Object.values(row).some(value => value && value.toLowerCase().includes(filterText));
+                    });
+
+                    // Display filtered data in the table
+                    displaySpreadsheetData(filteredData);
+
+                    // Place pins on the map for the filtered data
+                    placePinsOnMap(filteredData);
+                  }
+
+                  function placePinsOnMap(data) {
+                    // Clear existing markers
+                    markers.forEach(marker => marker.remove());
+                    markers.length = 0; // Clear the markers array
+
+                    // Add new markers for the filtered data
+                    data.forEach(row => {
+                      const lat = row["lat"];
+                      const lng = row["lng"];
+
+                      // If coordinates are valid, create and add marker
+                      if (lat && lng) {
+                        // Determine color based on "Nama Mitra"
+                        const namaMitra = row["Nama Mitra"] || ""; // Handle undefined/null
+                        let iconColor = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png"
+
+                        if (namaMitra.includes("Ketua RW")) {
+                          iconColor = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png"; // Red for Ketua RW
+                        } else if (namaMitra.includes("Ketua RT")) {
+                          iconColor = "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png"; // Orange for Ketua RT
+                        }
+
+                        const icon = new L.Icon({
+                          iconUrl: iconColor,
+                          shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+                          iconSize: [25, 41],
+                          iconAnchor: [12, 41],
+                          popupAnchor: [1, -34],
+                          shadowSize: [41, 41]
+                        });
+                        // Create a marker with a colored icon
+                        const customMarker = L.marker([lat, lng], {
+                          // iconUrl: " http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF",
+                          icon: icon,
+                          color: "red", // Border color
+                          // fillColor: markerColor, // Fill color
+                          // fillOpacity: 0.8, // Transparency of the fill
+                          // radius: 10 // Marker size
+                        }).addTo(map);
+
+                        // Link to Google Maps
+                        const googleMapsUrl = `https://www.google.com/maps/place/${lat},${lng}`;
+
+                        const popupContent = `
                 <b>Penanggung Jawab:</b> ${row["Nama Penanggung Jawab"]}<br>
                 <b>Nama Mitra:</b> ${row["Nama Mitra"]}<br>
                 <b>Alamat:</b> ${row["Link Alamat"]}<br>
@@ -724,15 +782,15 @@
             Beralih ke Google Maps
         </a>
             `;
-                    customMarker.bindPopup(popupContent);
-                    markers.push(customMarker); // Store marker to be able to remove it later
-                }
-            });
-        }
+                        customMarker.bindPopup(popupContent);
+                        markers.push(customMarker); // Store marker to be able to remove it later
+                      }
+                    });
+                  }
 
-        // Initial fetch
-        fetchSpreadsheetData();
-    </script>
-  </body>
+                  // Initial fetch
+                  fetchSpreadsheetData();
+                </script>
+</body>
+
 </html>
-
