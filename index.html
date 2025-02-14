@@ -77,7 +77,7 @@
             <a class="nav-link js-scroll-trigger" href="#about">Beranda</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Data UMKM</a>
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Data Wilayah</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#map-section">Pemetaan Wilayah</a>
@@ -142,7 +142,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">Data Potensi</h2>
+          <h2 class="section-heading text-uppercase">Data Wilayah</h2>
           <h3 class="section-subheading text-muted">Kelurahan Sukorame, Kec Mojoroto, Kota Kediri</h3>
         </div>
       </div>
@@ -215,7 +215,8 @@
                   <thead>
                     <tr>
                       <th>Nama Mitra</th>
-                      <th>Wilayah</th>
+                      <th>Nama Penanggung Jawab</th>
+                      <th>Lokasi</th>
                     </tr>
                   </thead>
                   <tbody></tbody>
@@ -251,7 +252,8 @@
                   <thead>
                     <tr>
                       <th>Nama Mitra</th>
-                      <th>Wilayah</th>
+                      <th>Nama Penanggung Jawab</th>
+                      <th>Lokasi</th>
                     </tr>
                   </thead>
                   <tbody></tbody>
@@ -283,16 +285,17 @@
                 <!-- Project Details Go Here -->
                 <h2 class="text-uppercase">Data UMKM</h2>
                 <p class="item-intro text-muted">Kelurahan Sukoramei</p>
-                 <!-- Tabel UMKM -->
-                 <table id="umkm-table" class="table">
-                   <thead>
-                     <tr>
-                       <th>Nama Mitra</th>
-                       <th>Wilayah</th>
-                     </tr>
-                   </thead>
-                   <tbody></tbody>
-                 </table>
+                <!-- Tabel UMKM -->
+                <table id="umkm-table" class="table">
+                  <thead>
+                    <tr>
+                      <th>Nama Mitra</th>
+                      <th>Nama Penanggung Jawab</th>
+                      <th>Lokasi</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
                 <button class="btn btn-primary" data-dismiss="modal" type="button">
                   <i class="fa fa-times"></i>
                   Tutup</button>
@@ -428,15 +431,39 @@
 
                         filteredData.forEach(item => {
                           let row = document.createElement("tr");
-                          let cell = document.createElement("td");
-                          cell.textContent = item["Nama Mitra"];
-                          row.appendChild(cell);
+
+                          let cellMitra = document.createElement("td");
+                          cellMitra.textContent = item["Nama Mitra"];
+
+                          let cellPenanggung = document.createElement("td");
+                          cellPenanggung.textContent = item["Nama Penanggung Jawab"];
+
+                          // Kolom Lokasi (Google Maps Link)
+                          let cellLokasi = document.createElement("td");
+                          if (item["lat"] && item["lng"]) {
+                            let googleMapsUrl = `https://www.google.com/maps/place/${item["lat"]},${item["lng"]}`;
+                            let link = document.createElement("a");
+                            link.href = googleMapsUrl;
+                            link.target = "_blank";
+                            link.style = "display:inline-block; padding:6px 10px; background:#007bff; color:#fff; text-decoration:none; border-radius:5px;";
+                            link.textContent = "Lihat Lokasi";
+                            cellLokasi.appendChild(link);
+                          } else {
+                            cellLokasi.textContent = "Tidak tersedia";
+                          }
+
+                          row.appendChild(cellMitra);
+                          row.appendChild(cellPenanggung);
+                          row.appendChild(cellLokasi)
+
                           tbody.appendChild(row);
                         });
+
+                        console.log("Filtered data", filteredData)
                       }
 
                       // Tampilkan data yang difilter
-                      filterData("KETUA RW", "ketua-rw-table");
+                      res = filterData("KETUA RW", "ketua-rw-table");
                       filterData("KETUA RT", "ketua-rt-table");
                       filterData("UMKM", "umkm-table");
 
